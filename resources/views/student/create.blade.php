@@ -15,7 +15,7 @@
                     <div class="card">
                         <div class="card-body">                         
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <form method="post" action="/create/siswa">
+                                <form method="post" action="/create/siswa" enctype = "multipart/form-data">
                                     @csrf
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">NIS</label>

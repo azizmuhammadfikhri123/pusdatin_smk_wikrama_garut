@@ -51,9 +51,12 @@ class StudentController extends Controller
             'rayon' => 'required',
             'alamat' => 'required',
             'agama' => 'required',
-            'pas_foto' => 'required'
-
+            'pas_foto' => 'required|mimes:jpeg,png,jpg,gif,svg'
         ]);
+
+        $imgname = $request->pas_foto->getClientOriginalName();
+        $request->pas_foto->move(public_path('image'), $imgname);
+
 
         $student = new student();
         $student->nis = $request->nis;
@@ -62,7 +65,7 @@ class StudentController extends Controller
         $student->rayon = $request->rayon;
         $student->alamat = $request->alamat;
         $student->agama = $request->agama;
-        $student->pas_foto = $request->pas_foto;
+        $student->pas_foto = $imgname;
         $student->save();
 
         return redirect('/dashboard')->with('status', 'Data Berhasil di Tambahkan !');
